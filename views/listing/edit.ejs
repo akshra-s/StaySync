@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>StaySync</title>
+</head>
+<body>
+    <h3>Edit This List :</h3>
+    <form method="POST" action="/listing/<%= list._id %>?_method=PUT">
+        <input name="listing[title]" value="<%= list.title %>"><br>
+        <textarea name="listing[description]"><%= list.description %></textarea><br>
+        <input name="listing[image]" value="<%= list.image %>"><br>
+        <input name="listing[price]" value="<%= list.price %>"><br>
+        <input name="listing[location]" value="<%= list.location%>"><br>
+        <input name="listing[country]" value="<%= list.country %>"><br>
+        <button>Edit</button>
+    </form>
+</body>
+</html>
