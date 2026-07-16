@@ -11,3 +11,33 @@
 .nav-link{
     color:#222222 !important;
 }
+
+/* FOOTER */
+
+.f-links a{
+    text-decoration: none;
+    color: #222222;
+}
+.f-links a:hover{
+    text-decoration: underline;
+}
+.f-links, .f-socials,.f-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-socials i{
+    font-size:1.2rems;
+    margin-right:1rem;
+}
+.f-info{
+    text-align: center;
+    height: 8rem;
+    display: flex;
+    background-color:#ebebeb ;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:space-evenly;
+}
