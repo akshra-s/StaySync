@@ -1,16 +1,62 @@
 <% layout("/layouts/boilerplate") -%>
+
 <body>
-    <h3>Listing Details:</h3>
-    <ul>
-        <li><%= list.title%></li>
-        <li><%= list.description%></li>
-        <!-- <li><%= list.image%></li> -->
-        <li>&#8377; <%= list.price.toLocaleString('en-IN')%></li>
-        <li><%= list.location%></li>
-        <li><%= list.country%></li>
-    </ul>
-    <a href="/listing/<%= list._id%>/edit">Edit this listing</a><br><br>
-    <form method="POST" action="/listing/<%=list._id%>?_method=DELETE">
-        <button>Delete</button><br>
-    </form>
+
+    <div class="row">
+        <div class="col-8 offset-2">
+
+            <br>
+            <h3>Listing Details</h3>
+            <br>
+
+            <div class="card shadow show-card">
+
+                <img
+                    src="<%= list.image %>"
+                    class="card-img-top show-img"
+                    alt="Listing Image">
+
+                <div class="card-body">
+
+                    <h4 class="card-title mb-3">
+                        <br>
+                        <%= list.title %>
+                    </h4>
+                    <p class="card-text">
+                        <strong>Description:</strong><br>
+                        <%= list.description %>
+                    </p>
+
+                    <hr>
+
+                    <p><strong>Price:</strong> ₹ <%= list.price.toLocaleString("en-IN") %></p>
+
+                    <p><strong>Location:</strong> <%= list.location %></p>
+
+                    <p><strong>Country:</strong> <%= list.country %></p>
+
+                </div>
+
+            </div>
+
+            <div class="mt-4 d-flex gap-3">
+
+                <a
+                    href="/listing/<%= list._id %>/edit"
+                    class="btn btn-dark">
+                    Edit
+                </a>
+
+                <form
+                    method="POST"
+                    action="/listing/<%= list._id %>?_method=DELETE">
+
+                    <button class="btn btn-danger">
+                        Delete
+                    </button>
+                </form>
+            </div>
+            <br><br>
+        </div>
+    </div>
 </body>

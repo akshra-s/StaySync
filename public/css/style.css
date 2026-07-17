@@ -85,3 +85,40 @@ body{
     background-color: rgba(220, 0, 0, 0.833) !important;
     border: none !important;
 }    
+
+/* EDIT FROM */
+
+.edit-btn{
+    background-color: rgba(220, 0, 0, 0.833) !important;
+    border: none !important;
+} 
+
+/* SHOW FORM */
+.show-card{
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+}
+
+.show-img{
+    height: 420px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-body{
+    padding: 1.8rem;
+}
+
+.card-title{
+    font-weight: 700;
+}
+
+.card-text{
+    line-height: 1.7;
+}
+
+.btn{
+    min-width: 110px;
+}
