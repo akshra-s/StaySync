@@ -11,9 +11,12 @@ const dbSchema= new Schema({
         required:true,
     },
     image: {
-        type:String,
-        default:"https://www.magnific.com/free-photo/hand-presenting-model-house-home-loan-campaign_15667726.htm#fromView=keyword&page=1&position=6&uuid=a6bbf401-2468-4578-95dc-54fac6b267fa&query=House",
-        set:(v) => v===""? "https://www.magnific.com/free-photo/hand-presenting-model-house-home-loan-campaign_15667726.htm#fromView=keyword&page=1&position=6&uuid=a6bbf401-2468-4578-95dc-54fac6b267fa&query=House":v,
+    type: String,
+    default: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    set: (v) =>
+        v === ""
+            ? "https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            : v,
     },
     price:{
         type:Number,

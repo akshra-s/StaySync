@@ -27,6 +27,7 @@ body{
 .f-links a{
     text-decoration: none;
     color: #222222;
+    margin: 0 5px;
 }
 .f-links a:hover{
     text-decoration: underline;
@@ -84,14 +85,22 @@ body{
 .add-btn{
     background-color: rgba(220, 0, 0, 0.833) !important;
     border: none !important;
+    transition: 0.2s !important;
 }    
+.add-btn:hover{
+    transform: scale(1.05);
+}
 
 /* EDIT FROM */
 
 .edit-btn{
     background-color: rgba(220, 0, 0, 0.833) !important;
     border: none !important;
+    transition: 0.2s !important;
 } 
+.edit-btn:hover{
+    transform: scale(1.05);
+}
 
 /* SHOW FORM */
 .show-card{
