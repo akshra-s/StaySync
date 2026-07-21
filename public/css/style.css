@@ -11,7 +11,7 @@ body{
 /* NAVBAR */
 
 .navbar{
-    height: 5 rem;
+    height: 5rem;
     background-color: white;
 }
 .fa-compass{
@@ -40,7 +40,7 @@ body{
 }
 
 .f-socials i{
-    font-size:1.2rems;
+    font-size:1.2rem;
     margin-right:1rem;
 }
 .f-info{
@@ -58,12 +58,25 @@ body{
 .card{
     border:none !important;
     margin-bottom:2rem;
+    transition: transform .25s ease, box-shadow .25s ease;
 }
+
+.card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12);
+}
+
 .card-img-top{
     border-radius: 1rem !important;
     width: 100% !important;
     object-fit: cover !important;
+    transition: transform .3s ease;
 }
+
+.card:hover .card-img-top{
+    transform: scale(1.03);
+}
+
 .card-body{
     padding: 0 !important;
 }
@@ -74,14 +87,8 @@ body{
     text-decoration: none;
 }
 
-/* CARD EFFECT */
-.card-img-overlay{
-    opacity:0;
-}
-.card-img-overlay:hover{
-    opacity:0.2;
-    background-color: white;
-}
+/* CREATE FROM */
+
 .add-btn{
     background-color: rgba(220, 0, 0, 0.833) !important;
     border: none !important;
@@ -116,7 +123,7 @@ body{
     object-fit: cover;
 }
 
-.card-body{
+.show-card .card-body{
     padding: 1.8rem;
 }
 
