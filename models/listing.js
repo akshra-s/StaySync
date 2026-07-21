@@ -1,5 +1,6 @@
 const mongoose=require("mongoose");
 const Schema=mongoose.Schema;
+const defimg="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 const dbSchema= new Schema({
     title: {
@@ -11,12 +12,12 @@ const dbSchema= new Schema({
         required:true,
     },
     image: {
-    type: String,
-    default: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    set: (v) =>
-        v === ""
-            ? "https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            : v,
+        type: String,
+        default: defimg,
+        set: (v) =>
+            v === ""
+                ? defimg
+                : v,
     },
     price:{
         type:Number,
@@ -30,6 +31,8 @@ const dbSchema= new Schema({
         type:String,
         required:true,
     }
+},{
+    timestamp:true
 });
 
 const listing=mongoose.model("listing",dbSchema);
