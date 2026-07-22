@@ -30,9 +30,13 @@ const dbSchema= new Schema({
     country:{
         type:String,
         required:true,
-    }
-},{
-    timestamp:true
+    },
+    reviews:[
+        {
+            type:Schema.Types.ObjectId,
+            ref:"review",
+        },
+    ],
 });
 
 const listing=mongoose.model("listing",dbSchema);

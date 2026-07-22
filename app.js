@@ -7,6 +7,7 @@ const methodOverride = require("method-override");
 const ejsMate=require("ejs-mate");
 const wrapAsync=require("./utility/wrapAsync.js");
 const ExError=require("./utility/ExError.js");
+const review=require("./models/review.js");
 const {listingSchema}=require("./schema.js");
 
 //connection..
@@ -97,6 +98,16 @@ app.delete("/listing/:id",wrapAsync(async(req,res)=>{
     console.log(delList);
     res.redirect("/listing");
 }));
+
+//Review post route..
+app.post("/listing/:id/review",async (req,res)=>{
+    let list=await listing.findById(req.params.id);
+    let newReview= new review(req.body.review);
+    list.reviews.push(newReview);
+    await newReview.save();
+    await list.save();
+    res.redirect(`/listing/${listing._id}`);
+});
 
 //For All invalid routes..
 app.use((req,res,next)=>{
