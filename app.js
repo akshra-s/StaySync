@@ -1,3 +1,5 @@
+//Requirements..
+
 const express = require("express");
 const app = express();
 const mongoose=require("mongoose");
@@ -9,8 +11,9 @@ const wrapAsync=require("./utility/wrapAsync.js");
 const ExError=require("./utility/ExError.js");
 const review=require("./models/review.js");
 const {listingSchema}=require("./schema.js");
+const {reviewSchema}=require("./schema.js");
 
-//connection..
+//Connection..
 main()
     .then(()=>{
         console.log("connected to db");
@@ -21,7 +24,7 @@ async function main() {
   await mongoose.connect("mongodb://127.0.0.1:27017/StaySync");
 };
 
-//.....
+//TOOLS..
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
@@ -29,8 +32,20 @@ app.use(methodOverride("_method"));
 app.engine('ejs',ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
-const validatelist=(req,res,next)=>{
+
+//VALIDATIONS..
+const validateListing=(req,res,next)=>{
     let {error}=listingSchema.validate(req.body);
+    if(error){
+        let errmsg =error.details.map((ele)=>ele.message).join(",");
+        throw new ExError(400,errmsg);
+    }else{
+        next();
+    }
+};
+
+const validateReview=(req,res,next)=>{
+    let {error}=reviewSchema.validate(req.body);
     if(error){
         let errmsg =error.details.map((ele)=>ele.message).join(",");
         throw new ExError(400,errmsg);
@@ -66,7 +81,7 @@ app.get("/listing/:id",wrapAsync(async(req,res)=>{
 }));
 
 //create route..(CREATE the NEW listing II)..
-app.post("/listing", validatelist,
+app.post("/listing", validateListing,
     wrapAsync(async(req,res)=>{
     const newlist = new listing(req.body.listing);
     await newlist.save();
@@ -84,7 +99,7 @@ app.get("/listing/:id/edit",wrapAsync(async(req,res)=>{
 }));
 
 //update route.. (UPDATE the EDITED listing II)
-app.put("/listing/:id",validatelist,
+app.put("/listing/:id",validateListing,
     wrapAsync(async(req,res)=>{
     let {id} = req.params;
     await listing.findByIdAndUpdate(id,{...req.body.listing});
@@ -100,14 +115,14 @@ app.delete("/listing/:id",wrapAsync(async(req,res)=>{
 }));
 
 //Review post route..
-app.post("/listing/:id/review",async (req,res)=>{
+app.post("/listing/:id/review",validateReview,wrapAsync(async (req,res)=>{
     let list=await listing.findById(req.params.id);
     let newReview= new review(req.body.review);
     list.reviews.push(newReview);
     await newReview.save();
     await list.save();
     res.redirect(`/listing/${listing._id}`);
-});
+}));
 
 //For All invalid routes..
 app.use((req,res,next)=>{
