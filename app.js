@@ -73,7 +73,7 @@ app.get("/listing",wrapAsync(async(req,res)=>{
 }));
 app.get("/listing/:id",wrapAsync(async(req,res)=>{
     let {id} = req.params;
-    const list = await listing.findById(id);
+    const list = await listing.findById(id).populate("reviews");
     if(!list){
         throw new ExError(404,"Listing not found!");
     }
@@ -121,7 +121,7 @@ app.post("/listing/:id/review",validateReview,wrapAsync(async (req,res)=>{
     list.reviews.push(newReview);
     await newReview.save();
     await list.save();
-    res.redirect(`/listing/${listing._id}`);
+    res.redirect(`/listing/${list._id}`);
 }));
 
 //For All invalid routes..
