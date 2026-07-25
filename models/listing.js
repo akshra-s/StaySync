@@ -1,8 +1,9 @@
 const mongoose=require("mongoose");
 const Schema=mongoose.Schema;
+const review = require("./review");
 const defimg="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-const dbSchema= new Schema({
+const listingSchema= new Schema({
     title: {
         type:String,
         required:true,
@@ -39,5 +40,11 @@ const dbSchema= new Schema({
     ],
 });
 
-const listing=mongoose.model("listing",dbSchema);
+listingSchema.post("findOneAndDelete",async(listing)=>{
+    if(listing){
+        await review.deleteMany({_id:{$in: listing.reviews}});
+    }
+});
+
+const listing=mongoose.model("listing",listingSchema);
 module.exports = listing;
