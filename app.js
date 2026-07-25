@@ -114,7 +114,9 @@ app.delete("/listing/:id",wrapAsync(async(req,res)=>{
     res.redirect("/listing");
 }));
 
-//Review post route..
+//Reviews
+
+// post review..
 app.post("/listing/:id/review",validateReview,wrapAsync(async (req,res)=>{
     let list=await listing.findById(req.params.id);
     let newReview= new review(req.body.review);
@@ -122,6 +124,13 @@ app.post("/listing/:id/review",validateReview,wrapAsync(async (req,res)=>{
     await newReview.save();
     await list.save();
     res.redirect(`/listing/${list._id}`);
+}));
+//delete review..
+app.delete("/listing/:id/review/:reviewid",wrapAsync(async(req,res)=>{
+    let {id,reviewid} = req.params;
+    await listing.findByIdAndUpdate(id,{$pull:{reviews:reviewid}});
+    await review.findByIdAndDelete(reviewid);
+    res.redirect(`/listing/${id}`);
 }));
 
 //For All invalid routes..

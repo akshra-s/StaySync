@@ -138,3 +138,9 @@ body{
 .btn{
     min-width: 110px;
 }
+
+.dlt-btn{
+    background-color: rgba(220, 0, 0, 0.833) !important;
+    border: none !important;
+    transition: 0.2s !important;
+} 
