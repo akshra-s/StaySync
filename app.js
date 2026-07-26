@@ -12,6 +12,7 @@ const ExError=require("./utility/ExError.js");
 const review=require("./models/review.js");
 const {listingSchema}=require("./schema.js");
 const {reviewSchema}=require("./schema.js");
+const listings=require("./routes/listing.js");
 
 //Connection..
 main()
@@ -33,16 +34,7 @@ app.engine('ejs',ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
 
-//VALIDATIONS..
-const validateListing=(req,res,next)=>{
-    let {error}=listingSchema.validate(req.body);
-    if(error){
-        let errmsg =error.details.map((ele)=>ele.message).join(",");
-        throw new ExError(400,errmsg);
-    }else{
-        next();
-    }
-};
+
 
 const validateReview=(req,res,next)=>{
     let {error}=reviewSchema.validate(req.body);
@@ -55,64 +47,12 @@ const validateReview=(req,res,next)=>{
 };
 
 //Routes..
-
 //Testing route..
 app.get("/",(req,res)=>{
     res.send("Root is working!");
 });
 
-//new route..(renders a form I)..
-app.get("/listing/new",(req,res)=>{
-    res.render("listing/new.ejs");
-});
-
-//show route..
-app.get("/listing",wrapAsync(async(req,res)=>{
-    const allList=await listing.find({});
-    res.render("listing/index.ejs",{allList});
-}));
-app.get("/listing/:id",wrapAsync(async(req,res)=>{
-    let {id} = req.params;
-    const list = await listing.findById(id).populate("reviews");
-    if(!list){
-        throw new ExError(404,"Listing not found!");
-    }
-    res.render("listing/show.ejs",{list});
-}));
-
-//create route..(CREATE the NEW listing II)..
-app.post("/listing", validateListing,
-    wrapAsync(async(req,res)=>{
-    const newlist = new listing(req.body.listing);
-    await newlist.save();
-    res.redirect("/listing");
-}));
-
-//edit route.. (renders a form I)..
-app.get("/listing/:id/edit",wrapAsync(async(req,res)=>{
-    let {id} = req.params;
-    const list = await listing.findById(id);
-    if(!list){
-        throw new ExError(404,"Listing not found!");
-    }
-    res.render("listing/edit.ejs",{list});
-}));
-
-//update route.. (UPDATE the EDITED listing II)
-app.put("/listing/:id",validateListing,
-    wrapAsync(async(req,res)=>{
-    let {id} = req.params;
-    await listing.findByIdAndUpdate(id,{...req.body.listing});
-    res.redirect(`/listing/${id}`);
-}));
-
-//DELETE ROUTE
-app.delete("/listing/:id",wrapAsync(async(req,res)=>{
-    let {id} = req.params;
-    let delList=await listing.findByIdAndDelete(id);
-    console.log(delList);
-    res.redirect("/listing");
-}));
+app.use("/listing",listings);
 
 //Reviews
 
