@@ -120,7 +120,8 @@ body{
 .show-img{
     height: 420px;
     width: 100%;
-    object-fit: cover;
+    border-radius:15px 15px 0 0;
+    object-fit:cover;
 }
 
 .show-card .card-body{

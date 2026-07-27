@@ -13,6 +13,7 @@ const {listingSchema}=require("./schema.js");
 const {reviewSchema}=require("./schema.js");
 const listings=require("./routes/listing.js");
 const reviews=require("./routes/review.js");
+const cookieParser=require("cookie-parser");
 
 //Connection..
 main()
@@ -26,12 +27,14 @@ async function main() {
 };
 
 //TOOLS..
+app.use(cookieParser());
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.engine('ejs',ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
+
 
 //Routes..
 //Testing route..
