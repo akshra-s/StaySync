@@ -1,13 +1,10 @@
 <% layout("/layouts/boilerplate") -%>
-<body>
     <div class="row">
         <div class="col-8 offset-2">
             <br>
             <h4 class="card-title mb-3">
-            <br>
             <%= list.title %>
-                    </h4>
-            <br>
+            </h4>
             <div class="card shadow show-card listing-card">
                 <img
                     src="<%= list.image %>"
@@ -46,22 +43,22 @@
             <form action="/listing/<%= list._id %>/review" method="POST" novalidate class="needs-validation">
                 <div class="mb-3 mt-3">
                     <label for="rating" class="form-label">Rating</label>
-                    <input type="range" class="form-control" min="1" max="5" id="rating" name="review[rating]">
+                    <input type="range" class="form-control" min="1" max="5" id="rating" name="review[rating]" required>
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="comment"class="form-label">Comments</label>
-                    <textarea name="review[comment]" class="form-control" id="comment" col="30" rows="5" required></textarea>
+                    <textarea name="review[comment]" class="form-control" id="comment" rows="5" required></textarea>
                     <div class="invalid-feedback">Please leave a Review !</div> 
                 </div>
                 <button class="btn btn-outline-dark">Submit</button>
             </form>
         <hr>
-        <h4>All Reviews :</h4> <br>
+        <h4>All Reviews :</h4><br>
         <div class="row">
-            <% for(review of list.reviews) { %>
+            <% for(let review of list.reviews) { %>
             <div class="card col-5 ms-3 mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Deepak Verma</h5>
+                    <h5 class="card-title">Anonymous User</h5>
                     <p class="card-text"><%=review.comment%></p>
                     <p class="card-text"><%=review.rating%>&starf;</p>
                 </div>
@@ -73,4 +70,3 @@
         </div>
         </div>
     </div>
-</body>
