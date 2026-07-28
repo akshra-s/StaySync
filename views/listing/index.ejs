@@ -1,12 +1,10 @@
 <% layout("/layouts/boilerplate") -%>
-<body>
-    <br>
-    <br>
+    <br><br>
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 ">
         <% for (let list of allList){ %>
             <a href="/listing/<%=list._id%>" class="list-link">
                 <div class="card col listing-card">
-                    <img src="<%=list.image%>" class="card-img-top" alt="listing_img" style="height: 20rem">
+                    <img src="<%=list.image%>" class="card-img-top" alt="listing_img">
                     <div class="card-img-overlay"></div>
                     <div class="card-body">
                         <p class="card-text">
@@ -18,8 +16,6 @@
             </a>
     <% } %>
     </div>
-
-</body>
 
 
 

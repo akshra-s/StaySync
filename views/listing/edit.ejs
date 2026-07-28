@@ -1,6 +1,4 @@
 <% layout("/layouts/boilerplate") -%>
-
-<body>
     <div class="row">
         <div class="col-8 offset-2">
             <br>
@@ -10,6 +8,7 @@
                 <div class="mb-4">
                     <label for="title" class="form-label"><b>Title</b></label>
                     <input
+                        id="title"
                         type="text"
                         name="listing[title]"
                         value="<%= list.title %>"
@@ -33,8 +32,7 @@
                         type="text"
                         name="listing[image]"
                         value="<%= list.image %>"
-                        class="form-control"
-                        required>
+                        class="form-control">
                     <div class="invalid-feedback">Invalid Image !</div>    
                 </div>
                 <div class="row">
@@ -45,6 +43,7 @@
                             name="listing[price]"
                             value="<%= list.price %>"
                             class="form-control"
+                            min="0"
                             required>
                         <div class="invalid-feedback">Invalid Price !</div>    
                     </div>
@@ -75,5 +74,4 @@
             </form>
         </div>
     </div>
-    
-</body>
+

@@ -3,13 +3,11 @@ body{
     flex-direction:column;
     min-height: 100vh;
 }
-
 .container{
     flex: 1;
 }
 
 /* NAVBAR */
-
 .navbar{
     height: 5rem;
     background-color: white;
@@ -23,7 +21,6 @@ body{
 }
 
 /* FOOTER */
-
 .f-links a{
     text-decoration: none;
     color: #222222;
@@ -38,7 +35,6 @@ body{
     align-items: center;
     justify-content: center;
 }
-
 .f-socials i{
     font-size:1.2rem;
     margin-right:1rem;
@@ -54,29 +50,24 @@ body{
 }
 
 /* CARDS */
-
 .listing-card{
     border:none !important;
     margin-bottom:2rem;
     transition: transform .25s ease, box-shadow .25s ease;
 }
-
 .card:hover{
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,.12);
 }
-
 .card-img-top{
     border-radius: 1rem !important;
     width: 100% !important;
     object-fit: cover !important;
     transition: transform .3s ease;
 }
-
 .card:hover .card-img-top{
     transform: scale(1.03);
 }
-
 .card-body{
     padding: 0 !important;
 }
@@ -86,9 +77,12 @@ body{
 .list-link{
     text-decoration: none;
 }
+.listing-card img{
+    height:20rem;
+    object-fit:cover;
+}
 
 /* CREATE FROM */
-
 .add-btn{
     background-color: rgba(220, 0, 0, 0.833) !important;
     border: none !important;
@@ -99,7 +93,6 @@ body{
 }
 
 /* EDIT FROM */
-
 .edit-btn{
     background-color: rgba(220, 0, 0, 0.833) !important;
     border: none !important;
@@ -116,30 +109,24 @@ body{
     overflow: hidden;
     box-shadow: 0 4px 18px rgba(0,0,0,0.12);
 }
-
 .show-img{
     height: 420px;
     width: 100%;
     border-radius:15px 15px 0 0;
     object-fit:cover;
 }
-
 .show-card .card-body{
     padding: 1.8rem;
 }
-
 .card-title{
     font-weight: 700;
 }
-
 .card-text{
     line-height: 1.7;
 }
-
 .btn{
     min-width: 110px;
 }
-
 .dlt-btn{
     background-color: rgba(220, 0, 0, 0.833) !important;
     border: none !important;

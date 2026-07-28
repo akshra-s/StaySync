@@ -9,8 +9,7 @@ const ejsMate=require("ejs-mate");
 const wrapAsync=require("./utility/wrapAsync.js");
 const ExError=require("./utility/ExError.js");
 const review=require("./models/review.js");
-const {listingSchema}=require("./schema.js");
-const {reviewSchema}=require("./schema.js");
+const {listingSchema, reviewSchema}=require("./schema.js");
 const listings=require("./routes/listing.js");
 const reviews=require("./routes/review.js");
 const cookieParser=require("cookie-parser");
@@ -21,7 +20,6 @@ main()
         console.log("connected to db");
     })
     .catch(err => console.log(err));
-
 async function main() {
   await mongoose.connect("mongodb://127.0.0.1:27017/StaySync");
 };
