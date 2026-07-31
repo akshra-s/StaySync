@@ -13,6 +13,7 @@ const {listingSchema, reviewSchema}=require("./schema.js");
 const listings=require("./routes/listing.js");
 const reviews=require("./routes/review.js");
 const cookieParser=require("cookie-parser");
+const flash = require("connect-flash");
 
 //Connection..
 main()
@@ -32,6 +33,13 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.engine('ejs',ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
+app.use(flash());
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+});
 
 
 //Routes..
