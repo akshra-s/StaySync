@@ -12,6 +12,7 @@ const review=require("./models/review.js");
 const {listingSchema, reviewSchema}=require("./schema.js");
 const listings=require("./routes/listing.js");
 const reviews=require("./routes/review.js");
+const session=require("express-session");
 const cookieParser=require("cookie-parser");
 const flash = require("connect-flash");
 
@@ -35,6 +36,12 @@ app.engine('ejs',ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 app.use(flash());
 
+const sessionopts={
+    secret:"mysupersecretcode",
+    resave:false,
+    saveUninitialized:true,
+};
+app.use(session(sessionopts));
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
