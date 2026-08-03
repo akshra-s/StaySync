@@ -13,7 +13,7 @@ const {listingSchema, reviewSchema}=require("./schema.js");
 const listings=require("./routes/listing.js");
 const reviews=require("./routes/review.js");
 const session=require("express-session");
-const cookieParser=require("cookie-parser");
+// const cookieParser=require("cookie-parser");
 const flash = require("connect-flash");
 
 //Connection..
@@ -27,7 +27,7 @@ async function main() {
 };
 
 //TOOLS..
-app.use(cookieParser());
+// app.use(cookieParser());
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
