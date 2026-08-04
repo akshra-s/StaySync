@@ -21,17 +21,17 @@ const validateListing=(req,res,next)=>{
 router.get("/new",(req,res)=>{
     res.render("listing/new.ejs");
 });
-
-//show route..
 router.get("/",wrapAsync(async(req,res)=>{
     const allList=await listing.find({});
     res.render("listing/index.ejs",{allList});
 }));
+//show route..
 router.get("/:id",wrapAsync(async(req,res)=>{
     let {id} = req.params;
     const list = await listing.findById(id).populate("reviews");
     if(!list){
-        throw new ExError(404,"Listing not found!");
+        req.flash("error", "Listing Does Not Exist !");
+        return res.redirect("/listing");
     }
     res.render("listing/show.ejs",{list});
 }));
@@ -50,7 +50,8 @@ router.get("/:id/edit",wrapAsync(async(req,res)=>{
     let {id} = req.params;
     const list = await listing.findById(id);
     if(!list){
-        throw new ExError(404,"Listing not found!");
+        req.flash("error", "Listing Does Not Exist !");
+        return res.redirect("/listing");
     }
     res.render("listing/edit.ejs",{list});
 }));
