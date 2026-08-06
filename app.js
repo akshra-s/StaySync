@@ -15,6 +15,9 @@ const reviews=require("./routes/review.js");
 const session=require("express-session");
 // const cookieParser=require("cookie-parser");
 const flash = require("connect-flash");
+const passport=require("passport");
+const LocalStrategy= require("passport-local");
+const user=require("./models/user.js");
 
 //Connection..
 main()
@@ -46,8 +49,18 @@ const sessionopts={
         httpOnly:true,
     },
 };
+
+//flash
 app.use(session(sessionopts));
 app.use(flash());
+
+//Passport (authentication)
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(user.authenticate()));
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
+
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
@@ -56,6 +69,14 @@ app.use((req, res, next) => {
 
 //Routes..
 //Testing route..
+app.get("/demo",async(req,res)=>{
+    let fakeUser= new user({
+        email:"student@gmail.com",
+        username:"student@2007",
+    });
+    let Myuser=await user.register(fakeUser,"itsapassword");
+    res.send(Myuser);
+});
 app.get("/",(req,res)=>{
     res.send("Root is working!");
 });
