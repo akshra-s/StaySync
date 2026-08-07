@@ -10,8 +10,9 @@ const wrapAsync=require("./utility/wrapAsync.js");
 const ExError=require("./utility/ExError.js");
 const review=require("./models/review.js");
 const {listingSchema, reviewSchema}=require("./schema.js");
-const listings=require("./routes/listing.js");
-const reviews=require("./routes/review.js");
+const listingRouter=require("./routes/listing.js");
+const reviewRouter=require("./routes/review.js");
+const userRouter=require("./routes/user.js");
 const session=require("express-session");
 // const cookieParser=require("cookie-parser");
 const flash = require("connect-flash");
@@ -82,10 +83,13 @@ app.get("/",(req,res)=>{
 });
 
 //listing routes..
-app.use("/listing",listings);
+app.use("/listing",listingRouter);
 
 //Reviews routes..
-app.use("/listing/:id/review",reviews);
+app.use("/listing/:id/review",reviewRouter);
+
+//user routes..
+app.use("/",userRouter);
 
 //For All invalid routes..
 app.use((req,res,next)=>{
