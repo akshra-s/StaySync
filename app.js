@@ -70,14 +70,14 @@ app.use((req, res, next) => {
 
 //Routes..
 //Testing route..
-app.get("/demo",async(req,res)=>{
-    let fakeUser= new user({
-        email:"student@gmail.com",
-        username:"student@2007",
-    });
-    let Myuser=await user.register(fakeUser,"itsapassword");
-    res.send(Myuser);
-});
+// app.get("/demo",async(req,res)=>{
+//     let fakeUser= new user({
+//         email:"student@gmail.com",
+//         username:"student@2007",
+//     });
+//     let Myuser=await user.register(fakeUser,"itsapassword");
+//     res.send(Myuser);
+// });
 app.get("/",(req,res)=>{
     res.send("Root is working!");
 });
