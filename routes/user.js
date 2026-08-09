@@ -32,4 +32,13 @@ router.post("/login",
             req.flash("success","Welcome Back To StaySync !");
             res.redirect("/listings");
 });
+router.get("/logout",(req,res)=>{
+    req.logout((err)=>{
+        if(err){
+            return next(err);
+        }
+        req.flash("success","You Logged out !");
+        res.redirect("/listing");
+    });
+});
 module.exports = router;
