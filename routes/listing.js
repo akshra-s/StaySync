@@ -4,6 +4,7 @@ const wrapAsync=require("../utility/wrapAsync.js");
 const {listingSchema}=require("../schema.js");
 const ExError=require("../utility/ExError.js");
 const listing=require("../models/listing.js");
+const {isloggedin}=require("../middleware.js");
 
 //VALIDATIONS..
 const validateListing=(req,res,next)=>{
@@ -18,9 +19,10 @@ const validateListing=(req,res,next)=>{
 
 
 //new route..(renders a form I)..
-router.get("/new",(req,res)=>{
+router.get("/new",isloggedin,(req,res)=>{
     res.render("listing/new.ejs");
 });
+//index route
 router.get("/",wrapAsync(async(req,res)=>{
     const allList=await listing.find({});
     res.render("listing/index.ejs",{allList});
@@ -37,7 +39,7 @@ router.get("/:id",wrapAsync(async(req,res)=>{
 }));
 
 //create route..(CREATE the NEW listing II)..
-router.post("/", validateListing,
+router.post("/",isloggedin, validateListing,
     wrapAsync(async(req,res)=>{
     const newlist = new listing(req.body.listing);
     await newlist.save();
@@ -46,7 +48,7 @@ router.post("/", validateListing,
 }));
 
 //edit route.. (renders a form I)..
-router.get("/:id/edit",wrapAsync(async(req,res)=>{
+router.get("/:id/edit",isloggedin,wrapAsync(async(req,res)=>{
     let {id} = req.params;
     const list = await listing.findById(id);
     if(!list){
@@ -57,7 +59,7 @@ router.get("/:id/edit",wrapAsync(async(req,res)=>{
 }));
 
 //update route.. (UPDATE the EDITED listing II)
-router.put("/:id",validateListing,
+router.put("/:id",isloggedin,validateListing,
     wrapAsync(async(req,res)=>{
     let {id} = req.params;
     await listing.findByIdAndUpdate(id,{...req.body.listing});
@@ -65,8 +67,8 @@ router.put("/:id",validateListing,
     res.redirect(`/listing/${id}`);
 }));
 
-//DELETE ROUTE
-router.delete("/:id",wrapAsync(async(req,res)=>{
+//delete route..
+router.delete("/:id",isloggedin,wrapAsync(async(req,res)=>{
     let {id} = req.params;
     let delList=await listing.findByIdAndDelete(id);
     console.log(delList);

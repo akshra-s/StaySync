@@ -27,8 +27,9 @@ router.get("/login",(req,res)=>{
 });
 router.post("/login",
     passport.authenticate("local",
-        {faliureRedirect:"/login",faliureFlash:true}),
+        {faliureRedirect:"/login",faliureFlash:true,}),
         async(req,res)=>{
-            res.send("Welcome To StaySync !");
+            req.flash("success","Welcome Back To StaySync !");
+            res.redirect("/listings");
 });
 module.exports = router;
