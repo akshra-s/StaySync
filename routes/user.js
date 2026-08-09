@@ -17,8 +17,8 @@ router.post("/signup",wrapAsync(async(req,res)=>{
         res.redirect("/listing");
     }
     catch(e){
-        req.flash("success",e.message);
-        res.redirect("/listing");
+        req.flash("error",e.message);
+        res.redirect("/signup");
     }
 }));
 
@@ -27,12 +27,12 @@ router.get("/login",(req,res)=>{
 });
 router.post("/login",
     passport.authenticate("local",
-        {faliureRedirect:"/login",faliureFlash:true,}),
-        async(req,res)=>{
+        {failureRedirect:"/login",failureFlash:true,}),
+        (req,res)=>{
             req.flash("success","Welcome Back To StaySync !");
-            res.redirect("/listings");
+            res.redirect("/listing");
 });
-router.get("/logout",(req,res)=>{
+router.get("/logout",(req,res,next)=>{
     req.logout((err)=>{
         if(err){
             return next(err);
