@@ -23,21 +23,23 @@
                     <p><strong>Country:</strong> <%= list.country %></p>
                 </div>
             </div>
-            <div class="mt-4 d-flex gap-3">
-                <a
-                    href="/listing/<%= list._id %>/edit"
-                    class="btn btn-dark">
-                    Edit
-                </a>
-                <form
-                    method="POST"
-                    action="/listing/<%= list._id %>?_method=DELETE">
-                    <button class="btn btn-danger">
-                        Delete
-                    </button>
-                </form>
-            </div>
-            <br><br>
+ 
+                    <a
+                        href="/listing/<%= list._id %>/edit"
+                        class="btn btn-dark">
+                        Edit
+                    </a>
+
+                    <form
+                        method="POST"
+                        action="/listing/<%= list._id %>?_method=DELETE">
+                        <button class="btn btn-danger">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+         
+        <br><br>
         </div>
         <div class="col-8 offset-2">
             <hr>

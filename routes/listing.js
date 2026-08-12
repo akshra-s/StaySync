@@ -65,6 +65,11 @@ router.get("/:id/edit",isloggedin,wrapAsync(async(req,res)=>{
 router.put("/:id",isloggedin,validateListing,
     wrapAsync(async(req,res)=>{
     let {id} = req.params;
+    let listing=await listing.findById(id);
+    if(currUser && list.owner._id.equals(res.locals.currUser._id)){
+        req.flash("Error","Only Owner Can Access!");
+        res.redirect(`/listing/${id}`);
+    }
     await listing.findByIdAndUpdate(id,{...req.body.listing});
     req.flash("success", "Listing updated successfully!");
     res.redirect(`/listing/${id}`);
