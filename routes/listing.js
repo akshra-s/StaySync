@@ -1,21 +1,8 @@
 const express=require("express");
 const router=express.Router();
 const wrapAsync=require("../utility/wrapAsync.js");
-const {listingSchema}=require("../schema.js");
-const ExError=require("../utility/ExError.js");
 const listing=require("../models/listing.js");
-const {isloggedin}=require("../middleware.js");
-
-//VALIDATIONS..
-const validateListing=(req,res,next)=>{
-    let {error}=listingSchema.validate(req.body);
-    if(error){
-        let errmsg =error.details.map((ele)=>ele.message).join(",");
-        throw new ExError(400,errmsg);
-    }else{
-        next();
-    }
-};
+const {isloggedin,isOwner,validateListing,validateReview}=require("../middleware.js");
 
 
 //new route..(renders a form I)..
@@ -51,7 +38,7 @@ router.post("/",isloggedin, validateListing,
 }));
 
 //edit route.. (renders a form I)..
-router.get("/:id/edit",isloggedin,wrapAsync(async(req,res)=>{
+router.get("/:id/edit",isloggedin,isOwner,wrapAsync(async(req,res)=>{
     let {id} = req.params;
     const list = await listing.findById(id);
     if(!list){
@@ -62,21 +49,16 @@ router.get("/:id/edit",isloggedin,wrapAsync(async(req,res)=>{
 }));
 
 //update route.. (UPDATE the EDITED listing II)
-router.put("/:id",isloggedin,validateListing,
+router.put("/:id",isloggedin,isOwner,validateListing,
     wrapAsync(async(req,res)=>{
     let {id} = req.params;
-    let listing=await listing.findById(id);
-    if(currUser && list.owner._id.equals(res.locals.currUser._id)){
-        req.flash("Error","Only Owner Can Access!");
-        res.redirect(`/listing/${id}`);
-    }
     await listing.findByIdAndUpdate(id,{...req.body.listing});
     req.flash("success", "Listing updated successfully!");
     res.redirect(`/listing/${id}`);
 }));
 
 //delete route..
-router.delete("/:id",isloggedin,wrapAsync(async(req,res)=>{
+router.delete("/:id",isloggedin,isOwner,wrapAsync(async(req,res)=>{
     let {id} = req.params;
     let delList=await listing.findByIdAndDelete(id);
     console.log(delList);
