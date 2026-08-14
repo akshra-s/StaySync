@@ -1,7 +1,7 @@
 const listing = require("./models/listing");
+const review = require("./models/review.js");
 const ExError=require("./utility/ExError.js");
 const {listingSchema,reviewSchema}=require("./schema.js");
-
 
 module.exports.isloggedin=(req,res,next)=>{
     if(!req.isAuthenticated()){
@@ -47,3 +47,13 @@ module.exports.validateReview=(req,res,next)=>{
         next();
     }
 };
+
+module.exports.isreviewAuthor=async(req,res,next)=>{
+    let {id,reviewid} = req.params;
+    const Currreview = await review.findById(reviewid);
+    if(!Currreview.author.equals(req.user._id)){
+        req.flash("error","Only author can access!");
+        return res.redirect(`/listing/${id}`);
+    }
+    next();
+}

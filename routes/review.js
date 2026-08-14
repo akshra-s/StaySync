@@ -4,13 +4,14 @@ const wrapAsync=require("../utility/wrapAsync.js");
 const ExError=require("../utility/ExError.js");
 const listing=require("../models/listing.js");
 const review=require("../models/review.js");
-const {validateReview}=require("../middleware.js");
+const {validateReview, isloggedin,isreviewAuthor}=require("../middleware.js");
 
 //routes..
 // post review..
-router.post("/",validateReview,wrapAsync(async (req,res)=>{
+router.post("/",isloggedin,validateReview,wrapAsync(async (req,res)=>{
     let list=await listing.findById(req.params.id);
     let newReview= new review(req.body.review);
+    newReview.author=req.user._id; 
     list.reviews.push(newReview);
     await newReview.save();
     await list.save();
@@ -18,7 +19,7 @@ router.post("/",validateReview,wrapAsync(async (req,res)=>{
     res.redirect(`/listing/${list._id}`);
 }));
 //delete review..
-router.delete("/:reviewid",wrapAsync(async(req,res)=>{
+router.delete("/:reviewid",isloggedin,isreviewAuthor,wrapAsync(async(req,res)=>{
     let {id,reviewid} = req.params;
     await listing.findByIdAndUpdate(id,{$pull:{reviews:reviewid}});
     await review.findByIdAndDelete(reviewid);
