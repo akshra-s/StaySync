@@ -12,7 +12,7 @@
                     alt="Listing Image">
                 <div class="card-body">
                     <p class="card-text mt-3">
-                        <i>Owned by : <%= list.owner.username%></i>
+                        <i>Owned by : <%= list.owner ? list.owner.username : "Unknown" %></i>
                         <br>
                         <strong>Description:</strong><br>
                         <%= list.description %>
@@ -66,18 +66,22 @@
         <hr>        
         <%}%>    
         
-        <h4>All Reviews :</h4><br>
+        <h4>All Reviews :</h4> <br>
         <div class="row">
             <% for(let review of list.reviews) { %>
             <div class="card col-5 ms-3 mb-3">
                 <div class="card-body">
-                    <h5 class="card-title"> <%=review.author.username%> </h5>
+                    <h5 class="card-title"><%= review.author ? review.author.username : "Anonymous User" %></h5>
                     <p class="card-text"><%=review.comment%></p>
                     <p class="card-text"><%=review.rating%>&starf;</p>
                 </div>
-                <form class="mb-3" method="POST" action="/listing/<%=list._id%>/review/<%=review._id%>?_method=DELETE">
-                    <button class="btn btn-sm btn-dark dlt-btn">Delete</button>
+            <% if (currUser && review.author && review.author._id.equals(currUser._id)) { %>
+                <form class="mb-3" method="POST" action="/listing/<%= list._id %>/review/<%= review._id %>?_method=DELETE">
+                    <button class="btn btn-sm btn-dark dlt-btn" type="submit">
+                        Delete
+                    </button>
                 </form>
+            <% } %>
             </div>
             <%}%>
         </div>
