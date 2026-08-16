@@ -10,7 +10,7 @@ const userSchema = new Schema({
     wishlist: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Listing",
+            ref: "listing",
         }
     ]
 });
