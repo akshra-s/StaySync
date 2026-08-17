@@ -12,8 +12,18 @@
                             <br>
                             &#8377; <%= list.price.toLocaleString('en-IN')%> / night</p>
                     </div>
+                    <% if (currUser) { %>
+                        <form
+                            action="/listing/<%=list._id%>/wishlist"
+                            method="POST"
+                            class="wishlist-form"
+                        >
+                            <button type="submit" class="wishlist-btn">♡</button>
+                        </form>
+                    <% } %>
                 </div>
             </a>
+            
     <% } %>
     </div>
 
