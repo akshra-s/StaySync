@@ -140,3 +140,5 @@ Built as a full-stack web development project to explore modern web application 
 ---
 
 ⭐ **If you like StaySync, consider giving the repository a star!**
+
+Made with ❤️ by **Akshra Srivastava**
