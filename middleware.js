@@ -24,7 +24,6 @@ module.exports.saveRedirectUrl = (req, res, next) => {
 
 module.exports.isOwner = async (req, res, next) => {
     const { id } = req.params;
-
     const list = await listing.findById(id);
 
     if (!list) {
@@ -70,7 +69,6 @@ module.exports.validateReview = (req, res, next) => {
 
 module.exports.isreviewAuthor = async (req, res, next) => {
     const { id, reviewid } = req.params;
-
     const currReview = await review.findById(reviewid);
 
     if (!currReview) {

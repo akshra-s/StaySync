@@ -2,14 +2,9 @@
 const express = require("express");
 const app = express();
 const mongoose=require("mongoose");
-const listing=require("./models/listing.js");
 const path=require("path");
 const methodOverride = require("method-override");
-const ejsMate=require("ejs-mate");
-const wrapAsync=require("./utility/wrapAsync.js");
 const ExError=require("./utility/ExError.js");
-const review=require("./models/review.js");
-const {listingSchema, reviewSchema}=require("./schema.js");
 const listingRouter=require("./routes/listing.js");
 const reviewRouter=require("./routes/review.js");
 const userRouter=require("./routes/user.js");
