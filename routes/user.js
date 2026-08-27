@@ -8,16 +8,24 @@ const { saveRedirectUrl,isloggedin } = require("../middleware.js");
 const UserCtrl=require("../controllers/user.js");
 
 //login..
-router.get("/signup",UserCtrl.userForm);
-router.post("/signup",UserCtrl.signinUser);
+router
+    .route("/signup")
+    .get(UserCtrl.userForm)
+    .post(UserCtrl.signinUser
+);
+
 //login..
-router.get("/login",UserCtrl.loginForm);
-router.post("/login",
-    saveRedirectUrl,
-    passport.authenticate("local",
+router
+    .route("/signup")
+    .get(UserCtrl.loginForm)
+    .post(saveRedirectUrl,
+        passport.authenticate("local",
         {failureRedirect:"/login",failureFlash:true,}),UserCtrl.loginUser
-        );
+);
+
+//logout..
 router.get("/logout",UserCtrl.Logout);
+
 //wishlist..
 router.get("/wishlist", isloggedin, wrapAsync(UserCtrl.getWishlist));
 router.post("/listing/:id/wishlist", isloggedin, wrapAsync(UserCtrl.postWishlist));
