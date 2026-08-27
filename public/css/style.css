@@ -112,7 +112,7 @@ body {
     transform: scale(1.03);
 }
 
-.card-body {
+.listing-card .card-body {
     padding: 0 !important;
 }
 
