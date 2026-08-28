@@ -1,7 +1,5 @@
 const express=require("express");
 const router = express.Router();
-const user=require("../models/user.js");
-const listing=require("../models/listing.js");
 const wrapAsync = require("../utility/wrapAsync.js");
 const passport =require("passport");
 const { saveRedirectUrl,isloggedin } = require("../middleware.js");
@@ -16,7 +14,7 @@ router
 
 //login..
 router
-    .route("/signup")
+    .route("/login")
     .get(UserCtrl.loginForm)
     .post(saveRedirectUrl,
         passport.authenticate("local",
