@@ -4,6 +4,10 @@ const wrapAsync=require("../utility/wrapAsync.js");
 const listing=require("../models/listing.js");
 const {isloggedin,isOwner,validateListing,validateReview}=require("../middleware.js");
 const listingctrl=require("../controllers/listing.js");
+const multer  = require('multer');
+const{storage}=require("../cloudConfig.js");
+const upload = multer({storage});
+
 
 //new route..(renders a form)..
 router.get("/new",isloggedin,listingctrl.newlistform);

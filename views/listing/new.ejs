@@ -4,7 +4,7 @@
             <br>
             <h3>Create New List :</h3>
             <br>
-            <form method="POST" action="/listing" novalidate class="needs-validation">
+            <form method="POST" action="/listing" novalidate class="needs-validation" enctype="multipart/form-data">
                 <div class="mb-4">
                     <label for="title" class="form-label">Title</label>
                     <input id="title" name="listing[title]" placeholder="Enter Title" type="text" class="form-control" required>
@@ -17,9 +17,10 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="img" class="form-label">Image</label>
-                    <input name="listing[image]"  placeholder="https://example.com/image.jpg"class="form-control">
+                    <label for="img" class="form-label">Upload Image</label>
+                    <input name="listing[image]" type="file"class="form-control">
                 </div>
+
 
                 <div class="row">
                     <div class="mb-4 col-4">
