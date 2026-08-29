@@ -24,9 +24,13 @@ module.exports.showlist=async(req,res)=>{
     }
     res.render("listing/show.ejs",{list});
 }
-module.exports.postlist=async(req,res)=>{
+module.exports.postlist=async(req,res,next)=>{
+    let url=req.file.path;
+    let filename=req.file.filename;
+
     const newlist = new listing(req.body.listing);
     newlist.owner=req.user._id;
+    newlist.image={url,filename};
     await newlist.save();
     req.flash("success", "Listing created successfully!");
     res.redirect("/listing");

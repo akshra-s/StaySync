@@ -15,7 +15,9 @@ router.get("/new",isloggedin,listingctrl.newlistform);
 router
     .route("/")
     .get(wrapAsync(listingctrl.index)) //index route
-    .post(isloggedin, validateListing,//create route
+    .post(isloggedin, //create route
+        upload.single("listing[image]"),
+        validateListing,
         wrapAsync(listingctrl.postlist)
 );
 
