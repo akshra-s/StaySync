@@ -24,7 +24,9 @@ router
 router
     .route("/:id")
     .get(wrapAsync(listingctrl.showlist))//show route
-    .put(isloggedin,isOwner,validateListing,//update route
+    .put(isloggedin,isOwner,   //update route
+        upload.single("listing[image]"),
+        validateListing,
         wrapAsync(listingctrl.updatelist))
     .delete(isloggedin,isOwner,//delete route
         wrapAsync(listingctrl.delList)
