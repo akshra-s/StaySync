@@ -195,3 +195,8 @@ body {
 }
 
 /*star rating..*/
+/*mapping..*/
+#map {
+    height: 400px;
+    width: 100%;
+}
