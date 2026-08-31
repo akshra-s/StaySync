@@ -1,7 +1,4 @@
 const listing=require("../models/listing");
-
-
-
 module.exports.index=async(req,res)=>{
     const allList=await listing.find({});
     res.render("listing/index.ejs",{allList});
@@ -24,14 +21,28 @@ module.exports.showlist=async(req,res)=>{
     }
     res.render("listing/show.ejs",{list});
 };
-module.exports.postlist=async(req,res,next)=>{
-    let url=req.file.path;
-    let filename=req.file.filename;
+module.exports.postlist = async (req, res, next) => {
+
+    let address = req.body.listing.location;
+
+    let response = await fetch(
+        `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&limit=1&apiKey=${process.env.GEOAPIFY_API_KEY}`
+    );
+
+    let data = await response.json();
+
+    console.log(data.results[0]);
+
+    let url = req.file.path;
+    let filename = req.file.filename;
 
     const newlist = new listing(req.body.listing);
-    newlist.owner=req.user._id;
-    newlist.image={url,filename};
+
+    newlist.owner = req.user._id;
+    newlist.image = { url, filename };
+
     await newlist.save();
+
     req.flash("success", "Listing created successfully!");
     res.redirect("/listing");
 };
