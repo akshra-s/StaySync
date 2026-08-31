@@ -9,6 +9,11 @@
         <h4 class="card-title mb-3"><%= list.title %></h4>
 
         <div class="card shadow show-card listing-card">
+            <% if (currUser) { %>
+                <form action="/listing/<%= list._id %>/wishlist" method="POST" class="wishlist-form">
+                    <button type="submit" class="wishlist-btn">♡</button>
+                </form>
+            <% } %>
             <img src="<%= list.image.url %>" class="card-img-top show-img" alt="Listing Image">
 
             <div class="card-body">

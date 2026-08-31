@@ -44,42 +44,67 @@ body {
 
 
 /*footer*/
-
-.f-info {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: #ebebeb;
-    height: 8rem;
+footer{
+    background:#f8f6f3;
+    border-top:1px solid #ddd8d2;
+    margin-top:auto;
 }
 
-.f-links,
-.f-socials,
-.f-brand {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.f-info{
+    min-height:120px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:25px 7%;
+    color:#444;
+    font-size:14px;
 }
 
-.f-links a {
-    color: #222;
-    text-decoration: none;
-    margin: 0 5px;
+.f-socials{
+    display:flex;
+    gap:18px;
 }
 
-.f-links a:hover {
-    text-decoration: underline;
+.f-socials a{
+    color:#333;
+    font-size:20px;
+    transition:0.2s;
 }
 
-.f-socials i {
-    font-size: 1.2rem;
-    margin-right: 1rem;
+.f-socials a:hover{
+    color:#1c352d;
+    transform:translateY(-2px);
 }
 
+.f-brand{
+    font-weight:500;
+    color:#555;
+}
 
+.f-links{
+    display:flex;
+    gap:20px;
+}
+
+.f-links a{
+    color:#555;
+    text-decoration:none;
+    transition:0.2s;
+}
+
+.f-links a:hover{
+    color:#1c352d;
+    text-decoration:underline;
+}
+
+@media(max-width:700px){
+    .f-info{
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+        padding:25px;
+    }
+}
 /*listing cards*/
 
 .list-link {
@@ -154,6 +179,7 @@ body {
 
 .show-card {
     border: none;
+    position: relative;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
@@ -174,6 +200,16 @@ body {
     top: 12px;
     right: 12px;
     z-index: 10;
+}
+.wishlist-card{
+    overflow:hidden;
+    border-radius:8px !important;
+}
+
+.wishlist-card img{
+    display:block;
+    width:100%;
+    border-radius:8px 8px 0 0 !important;
 }
 
 .wishlist-btn {

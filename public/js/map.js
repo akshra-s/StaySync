@@ -10,7 +10,7 @@ const map = new maplibregl.Map({
     container: "map",
     style: "https://tiles.openfreemap.org/styles/liberty",
     center: coordinates,
-    zoom: 10
+    zoom: 8
 });
 
 const marker = new maplibregl.Marker({ color: "red" })
