@@ -100,13 +100,15 @@
         <% } %>
     </div>
 
-    <!-- MAP -->
+    <!-- Mapping -->
     <div class="col-6 offset-2">
         <h3>Where you'll be:</h3>
-        <div id="map"></div>
+        <div
+        id="map"
+        data-coordinates='<%= JSON.stringify(list.geometry.coordinates) %>'
+        data-title="<%= list.title %>"
+        data-location="<%= list.location %>">
+        </div>
     </div>
 
-</div>
-
 <script type="module" src="/js/map.js"></script>
-

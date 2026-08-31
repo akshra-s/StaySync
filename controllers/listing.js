@@ -31,8 +31,6 @@ module.exports.postlist = async (req, res, next) => {
 
     let data = await response.json();
 
-    console.log(data.results[0]);
-
     let url = req.file.path;
     let filename = req.file.filename;
 
@@ -40,6 +38,7 @@ module.exports.postlist = async (req, res, next) => {
 
     newlist.owner = req.user._id;
     newlist.image = { url, filename };
+    newlist.geometry=data.features[0].geometry;
 
     await newlist.save();
 
