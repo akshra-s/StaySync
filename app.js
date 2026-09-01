@@ -78,9 +78,11 @@ app.use((req, res, next) => {
 //     let Myuser=await user.register(fakeUser,"itsapassword");
 //     res.send(Myuser);
 // });
-app.get("/",(req,res)=>{
-    res.send("Root is working!");
-});
+
+//root route..
+// app.get("/",(req,res)=>{
+//     res.send("Root is working!");
+// });
 
 //listing routes..
 app.use("/listing",listingRouter);

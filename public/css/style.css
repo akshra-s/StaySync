@@ -236,3 +236,34 @@ footer{
     height: 400px;
     width: 100%;
 }
+/* Home page filters */
+#filters{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:4rem;
+    margin:2rem 0 1.5rem 0;
+    padding:0 1rem;
+}
+
+.filter{
+    text-align:center;
+    opacity:.7;
+    min-width:60px;
+}
+
+.filter div{
+    font-size:1.1rem;
+    margin-bottom:.5rem;
+}
+
+.filter p{
+    font-size:.75rem;
+    margin:0;
+}
+
+.filter:hover{
+    opacity:1;
+    cursor:pointer;
+    color:#1C352D;
+}
