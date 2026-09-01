@@ -69,15 +69,25 @@ module.exports.editlist=async(req,res)=>{
     res.render("listing/edit.ejs",{list,orgImage});
 };
 module.exports.updatelist=async(req,res)=>{
-    let {id} = req.params;
-    let list=await listing.findByIdAndUpdate(id,{...req.body.listing});
-    if(typeof req.file !=="undefined"){
-            let url=req.file.path;
-            let filename=req.file.filename;
-            list.image={url,filename};
-            await list.save();
+    let {id}=req.params;
+    let list=await listing.findById(id);
+    Object.assign(list,req.body.listing);
+    let address=req.body.listing.location+", "+req.body.listing.country;
+    let response=await fetch(
+        `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&limit=1&apiKey=${process.env.GEOAPIFY_API_KEY}`
+    );
+    let data=await response.json();
+    if(data.features && data.features.length>0){
+        list.geometry=data.features[0].geometry;
     }
-    req.flash("success", "Listing updated successfully!");
+    if(typeof req.file!=="undefined"){
+        list.image={
+            url:req.file.path,
+            filename:req.file.filename
+        };
+    }
+    await list.save();
+    req.flash("success","Listing updated successfully!");
     res.redirect(`/listing/${id}`);
 };
 module.exports.delList=async(req,res)=>{

@@ -9,12 +9,18 @@ const location = mapElement.dataset.location;
 const map = new maplibregl.Map({
     container: "map",
     style: "https://tiles.openfreemap.org/styles/liberty",
-    center: coordinates,
+    center: {
+        lng: Number(coordinates[0]),
+        lat: Number(coordinates[1])
+    },
     zoom: 8
 });
 
 const marker = new maplibregl.Marker({ color: "red" })
-    .setLngLat(coordinates)
+    .setLngLat({
+        lng: Number(coordinates[0]),
+        lat: Number(coordinates[1])
+    })
     .addTo(map);
 
 marker.setPopup(
