@@ -349,4 +349,40 @@ const sampleListings = [
   },
 ];
 
+const categories = [
+  "Beach",
+  "Iconic Cities",
+  "Mountains",
+  "Farms",
+  "Camping",
+  "Beach",
+  "Lakefront",
+  "Iconic Cities",
+  "Mountains",
+  "Camping",
+  "Iconic Cities",
+  "Beach",
+  "Farms",
+  "Iconic Cities",
+  "Beach",
+  "Mountains",
+  "Iconic Cities",
+  "Beach",
+  "Mountains",
+  "Iconic Cities",
+  "Mountains",
+  "Beach",
+  "Farms",
+  "Iconic Cities",
+  "Iconic Cities",
+  "Lakefront",
+  "Beach",
+  "Mountains",
+  "Beach",
+];
+
+sampleListings.forEach((listing, index) => {
+  listing.category = categories[index];
+});
+
 module.exports = { data: sampleListings };

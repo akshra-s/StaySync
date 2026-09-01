@@ -1,4 +1,5 @@
 const listing=require("../models/listing");
+const User=require("../models/user");
 module.exports.index = async (req, res) => {
     const { category } = req.query;
     let allList;
@@ -91,9 +92,17 @@ module.exports.updatelist=async(req,res)=>{
     res.redirect(`/listing/${id}`);
 };
 module.exports.delList=async(req,res)=>{
-    let {id} = req.params;
+    let {id}=req.params;
+
     let delList=await listing.findByIdAndDelete(id);
-    console.log(delList);
-    req.flash("success", "Listing deleted successfully!");
+
+    if(delList){
+        await User.updateMany(
+            {wishlist:id},
+            {$pull:{wishlist:id}} //removes the deleted listing
+        );
+    }
+
+    req.flash("success","Listing deleted successfully!");
     res.redirect("/listing");
 };

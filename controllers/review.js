@@ -3,6 +3,10 @@ const review=require("../models/review.js");
 
 module.exports.postreview=async (req,res)=>{
     let list=await listing.findById(req.params.id);
+    if(!list){
+        req.flash("error","Listing Does Not Exist!");
+        return res.redirect("/listing");
+    }
     let newReview= new review(req.body.review);
     newReview.author=req.user._id; 
     list.reviews.push(newReview);
