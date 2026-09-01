@@ -1,59 +1,56 @@
 <% layout("/layouts/boilerplate") -%>
     <div id="filters">
-        <div class="filter">
+        <a href="/listing?category=Trending" class="filter">
             <div><i class="fa-solid fa-fire"></i></div>
             <p>Trending</p>
-        </div>
+        </a>
 
-        <div class="filter">
+        <a href="/listing?category=Rooms" class="filter">
             <div><i class="fa-solid fa-bed"></i></div>
             <p>Rooms</p>
-        </div>
+        </a>
 
-        <div class="filter">
+        <a href="/listing?category=Iconic Cities" class="filter">
             <div><i class="fa-solid fa-city"></i></div>
             <p>Iconic Cities</p>
-        </div>
+        </a>
 
-        <div class="filter">
+        <a href="/listing?category=Beach" class="filter">
             <div><i class="fa-solid fa-umbrella-beach"></i></div>
             <p>Beach</p>
-        </div>
+        </a>
 
-        <div class="filter">
+        <a href="/listing?category=Lakefront" class="filter">
             <div><i class="fa-solid fa-water"></i></div>
             <p>Lakefront</p>
-        </div>
+        </a>
 
-        <div class="filter">
+        <a href="/listing?category=Mountains" class="filter">
             <div><i class="fa-solid fa-mountain-sun"></i></div>
-            <p>Amazing View</p>
-        </div>
+            <p>Mountains</p>
+        </a>
 
-        <div class="filter">
+        <a href="/listing?category=Farms" class="filter">
             <div><i class="fa-solid fa-tractor"></i></div>
             <p>Farms</p>
-        </div>
+        </a>
 
-        <div class="filter">
-            <div><i class="fa-solid fa-person-hiking"></i></i></div>
+        <a href="/listing?category=Camping" class="filter">
+            <div><i class="fa-solid fa-person-hiking"></i></div>
             <p>Camping</p>
-        </div>
+        </a>
 
-        <div class="filter">
+        <a href="/listing?category=Pools" class="filter">
             <div><i class="fa-solid fa-person-swimming"></i></div>
             <p>Pools</p>
-        </div>
+        </a>
 
-        <div class="filter">
+        <a href="/listing?category=Arctic" class="filter">
             <div><i class="fa-solid fa-snowflake"></i></div>
             <p>Arctic</p>
-        </div>
-
+        </a>
     </div>
-    
-    
-    
+        
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
         <% for (let list of allList){ %>
             <a href="/listing/<%=list._id%>" class="list-link">

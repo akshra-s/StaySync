@@ -1,12 +1,26 @@
 const Joi=require("joi");
 const listingSchema = Joi.object({
-    listing:Joi.object({
-        title:Joi.string().required().max(100),
-        description:Joi.string().required(),
-        image:Joi.string().allow("",null).uri(),
-        price:Joi.number().required().min(0),
-        location:Joi.string().required(),
-        country:Joi.string().required(),
+    listing: Joi.object({
+        title: Joi.string().required(),
+        description: Joi.string().required(),
+        location: Joi.string().required(),
+        country: Joi.string().required(),
+        price: Joi.number().required(),
+        category: Joi.string()
+            .valid(
+                "Trending",
+                "Rooms",
+                "Iconic Cities",
+                "Beach",
+                "Lakefront",
+                "Mountains",
+                "Farms",
+                "Camping",
+                "Pools",
+                "Arctic"
+            )
+            .required(),
+        image: Joi.string().allow("", null)
     }).required()
 });
 

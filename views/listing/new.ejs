@@ -40,6 +40,23 @@
                     <input name="listing[country]" placeholder="Enter country"type="text"class="form-control" required>
                     <div class="invalid-feedback">Invalid Country !</div>
                 </div>
+                <div class="mb-4">
+                    <label for="category" class="form-label">Category</label>
+                    <select name="listing[category]" id="category" class="form-select" required>
+                        <option value="" selected disabled>Choose a category</option>
+                        <option value="Trending">Trending</option>
+                        <option value="Rooms">Rooms</option>
+                        <option value="Iconic Cities">Iconic Cities</option>
+                        <option value="Beach">Beach</option>
+                        <option value="Lakefront">Lakefront</option>
+                        <option value="Mountains">Mountains</option>
+                        <option value="Farms">Farms</option>
+                        <option value="Camping">Camping</option>
+                        <option value="Pools">Pools</option>
+                        <option value="Arctic">Arctic</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a category.</div>
+                </div>
                 <br>
                 <button class="btn btn-dark add-btn">Add</button>
                 <br><br>

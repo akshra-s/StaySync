@@ -235,6 +235,7 @@ footer{
 #map {
     height: 400px;
     width: 100%;
+    margin-top: 20px;
 }
 /* Home page filters */
 #filters{
@@ -250,6 +251,8 @@ footer{
     text-align:center;
     opacity:.7;
     min-width:60px;
+    text-decoration:none;
+    color:inherit;
 }
 
 .filter div{

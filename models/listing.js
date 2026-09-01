@@ -38,17 +38,34 @@ const listingSchema= new Schema({
         type:Schema.Types.ObjectId,
         ref:"user",
     },
+    category: {
+        type: String,
+        enum: [
+            "Trending",
+            "Rooms",
+            "Iconic Cities",
+            "Beach",
+            "Lakefront",
+            "Mountains",
+            "Farms",
+            "Camping",
+            "Pools",
+            "Arctic"
+        ],
+        required: true,
+    },
     geometry: {  //GeoJSON format.........
     type: {
         type: String,
         enum: ["Point"],
-        required: true,
+        // required: true,
     },
     coordinates: {
         type: [Number],
-        required: true,
+        // required: true,
     },
-},
+    },
+
 });
 
 listingSchema.post("findOneAndDelete",async(listing)=>{
