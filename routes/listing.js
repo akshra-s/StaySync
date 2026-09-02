@@ -20,6 +20,8 @@ router
         validateListing,
         wrapAsync(listingctrl.postlist)
 );
+//high no. of review= Trending
+router.get("/trending",wrapAsync(listingctrl.trending));
 
 router
     .route("/:id")

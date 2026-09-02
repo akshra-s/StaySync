@@ -10,6 +10,10 @@ module.exports.index = async (req, res) => {
     }
     res.render("listing/index.ejs", { allList });
 };
+module.exports.trending = async (req, res) => {
+    const allList = await listing.find({}).sort({ reviews: -1 });
+    res.render("listing/index.ejs", { allList });
+};
 module.exports.newlistform=(req,res)=>{
     res.render("listing/new.ejs");
 };
