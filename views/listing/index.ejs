@@ -49,6 +49,12 @@
             <div><i class="fa-solid fa-snowflake"></i></div>
             <p>Arctic</p>
         </a>
+        <div class="tax-switch">
+            <div class="form-check-reverse form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+                <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+                </div>
+        </div>
     </div>
         
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
@@ -61,7 +67,9 @@
                         <p class="card-text">
                             <b><%= list.title %></b>
                             <br>
-                            &#8377; <%= list.price.toLocaleString('en-IN')%> / night</p>
+                            &#8377; <%= list.price.toLocaleString('en-IN')%> / night
+                            <i class="taxInfo">&nbsp;+&nbsp;18%GST</i>
+                        </p>
                     </div>
                 </div>
             </a>
