@@ -279,3 +279,21 @@ footer{
     margin-left: auto;
     white-space: nowrap;
 }
+/* Search */
+.btn-search{
+    background-color: rgba(220, 0, 0, 0.833);
+    color: #fff;
+    border-radius: 25px;
+}
+.btn-search:hover{
+    background-color: rgba(220, 0, 0, 0.833);
+    color: #fff;
+}
+.sbar{
+    border-radius: 25px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    text-align: center;
+}
+.sbar:hover{
+    border:1px solid black;
+}
