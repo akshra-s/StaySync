@@ -1,11 +1,20 @@
 const listing=require("../models/listing");
 const User=require("../models/user");
 module.exports.index = async (req, res) => {
-    const { category } = req.query;
+    const { category, search } = req.query;
     let allList;
-    if (category) {
+    if (search){
+        allList = await listing.find({
+            $or:[
+                { title: { $regex: search, $options: "i" } },
+                { location: { $regex: search, $options: "i" } },
+                { country: { $regex: search, $options: "i" } },
+                { category: { $regex: search, $options: "i" } }
+            ]
+        });
+    }else if (category){
         allList = await listing.find({ category });
-    } else {
+    }else{
         allList = await listing.find({});
     }
     res.render("listing/index.ejs", { allList });
