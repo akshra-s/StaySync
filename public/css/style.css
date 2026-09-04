@@ -297,3 +297,70 @@ footer{
 .sbar:hover{
     border:1px solid black;
 }
+/* Responsive for phone */
+@media (max-width: 600px) {
+
+    .container {
+        padding: 1rem;
+    }
+
+    /* Navbar */
+    .navbar {
+        height: auto;
+        padding: 0.5rem;
+    }
+
+    /* Search */
+    .sbar {
+        width: 100%;
+        padding: 0.5rem 1rem;
+    }
+
+    /* Filters */
+    #filters {
+    gap: 1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    }
+
+    #filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter {
+        min-width: 60px;
+    }
+
+    /* Listing images */
+    .card-img-top {
+        height: 14rem;
+    }
+
+    /* Show page image */
+    .show-img {
+        height: 250px;
+    }
+
+    /* Map */
+    #map {
+        height: 300px;
+    }
+
+    /* Footer */
+    .f-info {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 20px;
+    }
+
+}
+@media (max-width: 400px) {
+    .card-img-top {
+        height: 13rem;
+    }
+
+    .show-img {
+        height: 220px;
+    }
+}
