@@ -8,7 +8,7 @@ A full-stack accommodation platform to **discover stays, create listings, save f
 
 ## 🌐 Live Demo
 
-🔗 **[Visit StaySync]([https://staysync-ib76.onrender.com])**
+🔗 **[Visit StaySync](https://staysync-ib76.onrender.com)**
 
 ---
 
