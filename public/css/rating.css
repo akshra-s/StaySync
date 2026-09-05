@@ -188,3 +188,8 @@
     display: none;
   }
 }
+.review-card .starability-result{
+    transform:scale(.8);
+    transform-origin:left center;
+    margin:0 0 4px;
+}

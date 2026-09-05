@@ -19,13 +19,15 @@
 })()
 //Taxes switch
 let taxSwitch=document.getElementById("switchCheckDefault");
-taxSwitch.addEventListener("click",()=>{
-  let taxInfo=document.getElementsByClassName("taxInfo");
-  for(info of taxInfo){
-    if(info.style.display!="inline"){
-      info.style.display="inline";
-    }else{
-      info.style.display="none";
-    }
-  }
-});
+if(taxSwitch){
+    taxSwitch.addEventListener("click",()=>{
+        let taxInfo=document.getElementsByClassName("taxInfo");
+        for(let info of taxInfo){
+            if(info.style.display!="inline"){
+                info.style.display="inline";
+            }else{
+                info.style.display="none";
+            }
+        }
+    });
+}
