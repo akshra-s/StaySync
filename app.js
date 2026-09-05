@@ -96,18 +96,21 @@ app.use((req, res, next) => {
 //     res.send("Root is working!");
 // });
 
-//listing routes..
-app.use("/listing",listingRouter);
+// listing routes..
+app.use("/listing", listingRouter);
 
-//Reviews routes..
-app.use("/listing/:id/review",reviewRouter);
+app.use("/listing/:id/review", reviewRouter);
 
-//user routes..
-app.use("/",userRouter);
+app.use("/", userRouter);
 
-//For All invalid routes..
-app.use((req,res,next)=>{
-    next(new ExError(404,"Page Not Found !"));
+// Home route
+app.get("/", (req, res) => {
+    res.redirect("/listing");
+});
+
+// 404 handler
+app.use((req, res, next) => {
+    next(new ExError(404, "Page Not Found !"));
 });
 app.use((err,req,res,next)=>{
     let{status=500,message="Something Went Wrong !"}=err;
