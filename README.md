@@ -1,35 +1,29 @@
 # 🏡 StaySync
 
 > **Discover. Share. Stay.**
-> A full-stack accommodation platform for discovering unique stays, managing listings, sharing experiences, and saving your favorite places.
+
+A full-stack accommodation platform to **discover stays, create listings, save favorites, and share experiences.**
 
 ![StaySync Preview](./screenshots/home.png)
 
 ## 🌐 Live Demo
 
-🔗 **[Visit StaySync](YOUR_RENDER_URL_HERE)**
-
----
-
-## 📖 About
-
-**StaySync** is a full-stack accommodation listing platform where users can discover stays, create and manage properties, leave reviews, and build a personal wishlist.
-
-It demonstrates a complete web application workflow with **authentication, CRUD operations, image storage, reviews, maps, validation, database management, and cloud deployment**.
+🔗 **[Visit StaySync]([https://staysync-ib76.onrender.com])**
 
 ---
 
 ## ✨ Features
 
-* 🔐 **Authentication** — Secure signup, login, sessions, and protected actions
-* 🏡 **Listings** — Create, view, edit, and delete accommodation listings
-* 🔎 **Explore** — Browse stays with images, pricing, and location details
-* ⭐ **Reviews** — Rate listings, share experiences, and manage your reviews
-* ❤️ **Wishlist** — Save and manage favorite stays
-* 🖼️ **Cloud Images** — Upload and store listing images
-* 🗺️ **Interactive Maps** — Display property locations
-* ✅ **Validation & Errors** — Server-side validation with clear feedback
-* ☁️ **Deployment** — Production deployment with MongoDB Atlas and Render
+- 🔐 **Authentication** — Signup, login, sessions & protected routes
+- 🏡 **Listings** — Create, edit, view & delete stays
+- 🔎 **Search & Categories** — Find stays by location, country & category
+- ❤️ **Wishlist** — Save and manage favorite stays
+- ⭐ **Reviews & Ratings** — Rate listings and share experiences
+- 🖼️ **Image Uploads** — Cloudinary-powered image storage
+- 🗺️ **Interactive Maps** — Location-based property maps
+- 💰 **Tax Toggle** — Display prices with 18% GST
+- ✅ **Validation & Error Handling** — Joi validation & custom error handling
+- ☁️ **Deployment** — Render + MongoDB Atlas
 
 ---
 
@@ -37,73 +31,31 @@ It demonstrates a complete web application workflow with **authentication, CRUD 
 
 ### 🏠 Home
 
-![Home Page](./screenshots/home.png)
-
-### 🏡 Listings
-
-![All Listings](./screenshots/listings.png)
+![Home](./screenshots/home.png)
 
 ### 📍 Listing Details
 
 ![Listing Details](./screenshots/listing-details.png)
 
-### ⭐ Reviews
+### ⭐ Wishlist
 
-![Reviews](./screenshots/reviews.png)
+![wishlist](./screenshots/wishlist.png)
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Category       | Technologies                                  |
-| -------------- | --------------------------------------------- |
-| Frontend       | HTML5, CSS3, Bootstrap, EJS                   |
-| Backend        | Node.js, Express.js                           |
-| Database       | MongoDB, Mongoose, MongoDB Atlas              |
-| Authentication | Passport.js, Passport Local, Express Session  |
-| Images         | Cloudinary                                    |
-| Maps           | Mapbox                                        |
-| Validation     | Joi                                           |
-| Utilities      | Connect-Mongo, Express Flash, Method Override |
-| Deployment     | Render                                        |
+**Frontend:** HTML5 · CSS3 · JavaScript · Bootstrap · EJS
 
----
+**Backend:** Node.js · Express.js
 
-## 🚀 Getting Started
+**Database:** MongoDB · Mongoose · MongoDB Atlas
 
-### 1. Clone the repository
+**Authentication:** Passport.js · Express Session · Connect-Mongo
 
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-cd staysync
-```
+**Services:** Cloudinary · Geoapify · MapLibre GL JS
 
-### 2. Install dependencies
-
-```bash
-npm install
-```
-
-### 3. Configure environment variables
-
-Create a `.env` file:
-
-```env
-ATLASDB_URL=your_mongodb_connection_string
-SECRET=your_session_secret
-CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-CLOUDINARY_KEY=your_cloudinary_key
-CLOUDINARY_SECRET=your_cloudinary_secret
-MAP_TOKEN=your_mapbox_token
-```
-
-### 4. Start the application
-
-```bash
-npm start
-```
-
-Open the local server in your browser and start exploring StaySync.
+**Other:** Joi · Multer · Method Override · Connect-Flash
 
 ---
 
@@ -119,26 +71,81 @@ StaySync/
 ├── utility/
 ├── middleware.js
 ├── schema.js
+├── cloudConfig.js
 ├── app.js
 └── package.json
 ```
 
 ---
 
+## 🚀 Run Locally
+
+### 1. Clone the repository
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+cd StaySync
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure environment variables
+
+Create a `.env` file in the root directory:
+
+```env
+ATLASDB_URL=your_mongodb_connection_string
+SESSION_SECRET=your_session_secret
+CLOUD_NAME=your_cloudinary_name
+CLOUD_API_KEY=your_cloudinary_key
+CLOUD_SECRET=your_cloudinary_secret
+GEOAPIFY_API_KEY=your_geoapify_api_key
+```
+
+### 4. Start the application
+
+```bash
+node app.js
+```
+
+Open **http://localhost:8080** in your browser.
+
+---
+
 ## 🎯 Project Highlights
 
-StaySync focuses on building a realistic full-stack experience rather than a static interface, connecting:
+```text
+Authentication → Listings → Reviews
+       ↓              ↓          ↓
+   Sessions       Wishlist     Ratings
+                      ↓
+                Cloudinary + Maps
+                      ↓
+                   MongoDB
+```
 
-**User → Authentication → Listings → Reviews → Wishlist → Maps → Cloud Services → Database**
+Built to practice **full-stack development, MVC architecture, CRUD operations, authentication, database relationships, API integration, cloud storage, and deployment.**
 
 ---
 
-## 👨‍💻 Built With
+## 🔮 Future Plans
 
-Built as a full-stack web development project to explore modern web application architecture, backend development, database integration, authentication, and deployment.
+- 💳 Booking & payments
+- 📅 Stay availability
+- 💬 Host–guest messaging
+- 🔔 Notifications
+- 📊 Host dashboard
+- 🔍 Advanced filters
 
 ---
+
+## 👨‍💻 Author
+
+**Akshra Srivastava**  
+B.Tech IT — BPIT, Delhi
 
 ⭐ **If you like StaySync, consider giving the repository a star!**
-
-Made with ❤️ by **Akshra Srivastava**
