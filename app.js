@@ -13,12 +13,13 @@ const listingRouter=require("./routes/listing.js");
 const reviewRouter=require("./routes/review.js");
 const userRouter=require("./routes/user.js");
 const session=require("express-session");
+const { MongoStore } = require("connect-mongo");
 // const cookieParser=require("cookie-parser");
 const flash = require("connect-flash");
 const passport=require("passport");
 const LocalStrategy= require("passport-local");
 const user=require("./models/user.js");
-
+const dbUrl=process.env.ATLASDB_URL;
 //Connection..
 main()
     .then(()=>{
@@ -26,7 +27,7 @@ main()
     })
     .catch(err => console.log(err));
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/StaySync");
+  await mongoose.connect(dbUrl);
 };
 
 //TOOLS..
@@ -39,8 +40,19 @@ app.engine('ejs',ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
 //SESSION 
+const store=MongoStore.create({
+    mongoUrl:dbUrl,
+    crypto:{
+        secret:process.env.SESSION_SECRET
+    },
+    touchAfter:24*3600,
+});
+store.on("error",(err)=>{
+    console.log("Error in Mongo Session Store\n",err);
+});
 const sessionopts={
-    secret:"mysupersecretcode",
+    store:store,
+    secret:process.env.SESSION_SECRET,
     resave:false,
     saveUninitialized:true,
     cookie:{
@@ -102,6 +114,8 @@ app.use((err,req,res,next)=>{
     res.status(status).render("error.ejs",{message});
 });
 
-app.listen(8080,()=>{
-    console.log("Server is listening to port 8080");
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+    console.log(`Server is listening to port ${PORT}`);
 });

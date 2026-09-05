@@ -1,4 +1,7 @@
 {
+  "engines":{
+    "node":"24.16.0"
+  },
   "name": "major-proj",
   "version": "1.0.0",
   "description": "",
@@ -14,6 +17,7 @@
   "dependencies": {
     "cloudinary": "^1.41.3",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.4.2",
     "ejs": "^6.0.1",
@@ -23,6 +27,7 @@
     "joi": "^18.2.3",
     "maplibre-gl": "^6.6.0",
     "method-override": "^3.0.0",
+    "mongodb": "^7.6.0",
     "mongoose": "^9.7.4",
     "multer": "^2.2.0",
     "multer-storage-cloudinary": "^4.0.0",
