@@ -78,8 +78,10 @@ module.exports.editlist=async(req,res)=>{
         req.flash("error", "Listing Does Not Exist !");
         return res.redirect("/listing");
     }
-    let orgImage=list.image.url;
-    orgImage=orgImage.replace("/upload","/upload/w_250");
+    let orgImage = list.image?.url;
+    if(orgImage){
+        orgImage = orgImage.replace("/upload","/upload/w_250");
+    }
     res.render("listing/edit.ejs",{list,orgImage});
 };
 module.exports.updatelist=async(req,res)=>{
