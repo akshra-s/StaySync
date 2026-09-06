@@ -4,7 +4,7 @@
 
 A full-stack accommodation platform to **discover stays, create listings, save favorites, and share experiences.**
 
-![StaySync Preview](./screenshots/home.png)
+![StaySync Preview](./images/homepg.png)
 
 ## 🌐 Live Demo
 
@@ -20,7 +20,7 @@ A full-stack accommodation platform to **discover stays, create listings, save f
 - ❤️ **Wishlist** — Save and manage favorite stays
 - ⭐ **Reviews & Ratings** — Rate listings and share experiences
 - 🖼️ **Image Uploads** — Cloudinary-powered image storage
-- 🗺️ **Interactive Maps** — Location-based property maps
+- 🗺️ **Interactive Maps** — View listing locations on interactive maps
 - 💰 **Tax Toggle** — Display prices with 18% GST
 - ✅ **Validation & Error Handling** — Joi validation & custom error handling
 - ☁️ **Deployment** — Render + MongoDB Atlas
@@ -29,17 +29,21 @@ A full-stack accommodation platform to **discover stays, create listings, save f
 
 ## 📸 Screenshots
 
-### 🏠 Home
+### 🏡 Listing Details
 
-![Home](./screenshots/home.png)
+![Listing Details](./images/listing_details.png)
 
-### 📍 Listing Details
+### 🗺️ Interactive Map
 
-![Listing Details](./screenshots/listing-details.png)
+![Interactive Map](./images/mapping.png)
 
-### ⭐ Wishlist
+### ⭐ Reviews & Ratings
 
-![wishlist](./screenshots/wishlist.png)
+![Reviews](./images/review.png)
+
+### ❤️ Wishlist
+
+![Wishlist](./images/wishlist.png)
 
 ---
 
@@ -69,14 +73,18 @@ StaySync/
 ├── views/
 ├── public/
 ├── utility/
+├── images/
+│   ├── homepg.png
+│   ├── listing_details.png
+│   ├── mapping.png
+│   ├── review.png
+│   └── wishlist.png
 ├── middleware.js
 ├── schema.js
 ├── cloudConfig.js
 ├── app.js
 └── package.json
 ```
-
----
 
 ## 🚀 Run Locally
 
